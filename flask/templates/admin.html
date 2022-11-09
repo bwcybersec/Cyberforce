@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="section">
+    <h2> FTP Server View </h2>
+    <table>
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Download</th>
+        </tr>
+    </thead>        
+    <tbody>
+        {% for file in files %}
+            <tr>
+                <td>{{file}}</td>
+                <td>
+                    {% if file %}
+                        <a class="waves-effect waves-light btn" href="{{url_for('download_file',name=file)}}">Download</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}    
+    </tbody>
+    </table>
+</div>
+<div class="section">
+    <table>
+        <thead>
+            <tr>
+                <th>    <h2> Emails </h2>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for email in emails %}
+            <tr><td>{{email}}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

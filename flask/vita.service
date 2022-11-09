@@ -1,0 +1,15 @@
+[Unit]
+Description=Vita Vehiculum Site
+
+[Service]
+User=flask
+Restart=always
+Type=simple
+WorkingDirectory=/srv/flask
+ExecStartPre=/usr/local/bin/pipenv install
+ExecStart=/usr/local/bin/pipenv run flask --no-debug run --no-debugger
+StandardError=journal
+StandardOut=journal 
+
+[Install]
+WantedBy=multi-user.target

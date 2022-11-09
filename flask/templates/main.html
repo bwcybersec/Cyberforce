@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="section center-align">
+    <img src="https://penntoday.upenn.edu/sites/default/files/2021-07/solar-farms-main.jpg">
+</div>
+
+<div class="section">
+    <div class="center-align">
+        <h3>Sonnenberg Fields</h3>
+    </div>
+    <div class="row">
+        <div class="col s5 center-align">
+            <h4>List of Solar Arrays</h4>
+            <table>
+                <thead>
+                    <tr><th>Solar Array ID</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    {% for array in solarArrays %}
+                    <tr><td>{{array[0]}}</td><td>{{array[1]}}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col s7 center-align">
+            <h4>Power Generation</h4>
+            <table>
+                <thead>
+                    <tr><th>Solar Array ID</th><th>Power Generated</th></tr>
+                </thead>
+                <tbody>
+                    {% for array in powerGen %}
+                    <tr><td>{{array[0]}}</td><td>{{array[1]}}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

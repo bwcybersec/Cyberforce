@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vita Vehiculum</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/materialize.css">
+    <script src="static/js/materialize.js"></script>
+    <style>
+        .btn-small.waves-light.waves-effect {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <a style="width: 25%; box-sizing:border-box; margin-bottom:20px" class="" href="{{ url_for('main') }}"><img style="margin-top: 2px;max-width:33%;max-height:60px;" src="/static/images/szs.png" /></a>
+            <ul class="right">
+                <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                <li><a href="{{ url_for('manufacturing') }}">Manufacturing</a></li>
+                <li><a href="{{ url_for('solargen') }}">Solar Generation</a></li>
+                {% if not session["loggedIn"] %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% else %}
+                {% if session.get("admin", default=False) %}
+                <li><a href="{{ url_for('admin') }}">Admin</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row ">
+                <!-- <div class="col s4 center"> -->
+                    <img class="col s4" src="/static/images/vita.png" />
+                <!-- </div> -->
+                <div class="col s4 center">
+                    <a href="#" class="waves-effect waves-light btn-small"
+                        style="margin-top:12.5%; margin-bottom:0px">Subscribe to Newsletter</a>
+                </div>
+
+                <div class="col s4 center">
+                    <ul>
+                        <li><a class="waves-effect waves-light btn-small" href="{{ url_for('contact') }}">Contact Us</a>
+                        </li>
+                        <li><a class="waves-effect waves-light btn-small"
+                                href="{{ url_for('manufacturing') }}">Manufacturing</a></li>
+                        <li><a class="waves-effect waves-light btn-small" href="{{ url_for('solargen') }}">Solar
+                                Generation</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
